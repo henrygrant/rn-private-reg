@@ -1,0 +1,20 @@
+def MY_REPOS = {
+    maven {
+        name 'my-repo'
+        url "https://my-repo.com/repo"
+    }
+}
+settingsEvaluated { settings ->
+    settings.pluginManagement {
+        println "Repository names before: " + repositories.getNames()
+        repositories.clear()
+        repositories(MY_REPOS)
+        println "Repository names after: " + repositories.getNames()
+    }
+}
+allprojects {
+    repositories(MY_REPOS)
+    buildscript {
+        repositories(MY_REPOS)
+    }
+}
