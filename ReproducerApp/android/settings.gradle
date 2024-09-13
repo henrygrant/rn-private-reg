@@ -1,6 +1,19 @@
-pluginManagement { includeBuild("../node_modules/@react-native/gradle-plugin") }
+pluginManagement { 
+    repositories {
+        clear()
+        maven { url = uri("https://myrepo.com/nexus/repository") }
+    }
+    includeBuild("../node_modules/@react-native/gradle-plugin") 
+}
 plugins { id("com.facebook.react.settings") }
 extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autolinkLibrariesFromCommand() }
 rootProject.name = 'ReproducerApp'
 include ':app'
 includeBuild('../node_modules/@react-native/gradle-plugin')
+
+dependencyResolutionManagement {
+    repositories {
+        clear()
+        maven { url = uri("https://myrepo.com/nexus/repository") }
+    }
+}
